@@ -7,6 +7,7 @@ function buscarProdutos(){
     .then((response) => {return response.json()}) // converte pra .json
     .then((response) => { 
         produtos = response;
+        console.log(produtos);
         carregarProdutos(produtos); // carrega os arquivos aqui dentro
     })
 }
@@ -61,7 +62,7 @@ function ordenarProdutos(ordem){
             return prodB.rating.rate - prodA.rating.rate;
         })
     }
-    carregarProdutos(produtosOrdenados);
+    setProdutosFiltrados(produtosOrdenados);
 }
 
 function pesquisarProdutos(texto){
@@ -78,7 +79,7 @@ function pesquisarProdutos(texto){
     // }
 
     if (texto.length != 3){
-        carregarProdutos(produtos);
+        carregarProdutos(produtosFiltrados);
         return;
     } else{
         let produtosFiltrados = produtos.filter((produto) => {
